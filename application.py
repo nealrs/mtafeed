@@ -10,7 +10,8 @@ import json
 
 app = Flask(__name__)
 
-presignoff = " Go to MTA dot info to learn more. "
+#presignoff = " Go to MTA dot info to learn more. "
+presignoff = ""
 
 def getFeed(mode):
 	try:
