@@ -1,0 +1,7 @@
+{
+  "name": "New York Subway & Transit Status",
+  "description": "Learn which MTA trains / busses / bridge are running smoothly - before you leave home!",
+  "image": "heroku/python",
+  "repository": "https://github.com/nealrs/MTAFeed",
+  "keywords": ["python", "flask", "mta", "beautiful soup", "alexa", "flash briefing", "echo" ]
+}
