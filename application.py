@@ -11,7 +11,7 @@ import json
 app = Flask(__name__)
 
 #presignoff = " Go to MTA dot info to learn more. "
-presignoff = ""
+presignoff = " "
 
 def getFeed(mode):
 	try:
