@@ -373,7 +373,7 @@ def getBT():
 		work_sentence = "There is work planned on the "+oxfordComma(work)+ "."
 
 	if delay:
-		delay_sentence = "The "+oxfordComma(work)+ " are backed up."
+		delay_sentence = "The "+oxfordComma(delay)+ " are backed up."
 
 
 	allroutes =  good_sentence + " " +  detour_sentence + " " +  change_sentence + " " + work_sentence + " " +delay_sentence + presignoff +" Sunglasses off, lights on!"
