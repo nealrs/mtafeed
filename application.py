@@ -30,10 +30,22 @@ def getDetailUrl(mode):
 	return "http://tripplanner.mta.info/mobileApps/serviceStatus/statusMessage.aspx?mode="+mode
 
 
+def oxfordComma(items):
+    length = len(items)
+    if length == 1:
+        return items[0]
+    if length == 2:
+        return '{} and {}'.format(*items)
+    else:
+		return '{}, and {}'.format(', '.join(items[:-1]), items[-1])
+
+
 def getSubway():
 	good = []
-	delay = []
-	work = []
+	detour = []
+	change = []
+	delay =[]
+	work=[]
 
 	good_sentence = ""
 	detour_sentence = ""
@@ -69,6 +81,12 @@ def getSubway():
 				else:
 					work.extend(line)
 
+			if status == "SERVICE CHANGE":
+				if line == "Staten Island":
+					change.append(line)
+				else:
+					change.extend(line)
+
 			if status == "DELAYS":
 				if line == "Staten Island":
 					delay.append(line)
@@ -79,19 +97,24 @@ def getSubway():
 	print good
 	print "planned work: "
 	print work
+	print "service change: "
+	print change
 	print "delays: "
 	print delay
 
 	if good:
-		good_sentence = "{}, and {}".format(", ".join(good[:-1]), good[-1])+ " trains are running fine."
+		good_sentence = oxfordComma(good)+ " trains are running fine."
 
 	if work:
-		work_sentence = "Some {}, and {}".format(", ".join(work[:-1]), work[-1])+ " trains have scheduled work."
+		work_sentence = "Some "+oxfordComma(work)+ " trains have scheduled work."
+
+	if change:
+		change_sentence = "There's a service change on the "+ oxfordComma(change)+ "."
 
 	if delay:
-		delay_sentence = "And blerg, the {}, and {}".format(", ".join(delay[:-1]), delay[-1])+ " trains are running with delays."
+		delay_sentence = "And blerg, the "+oxfordComma(delay)+ " trains are running with delays."
 
-	alltrains =  good_sentence + " " +  work_sentence + " " + delay_sentence + presignoff + "Stand clear of the closing doors please!"
+	alltrains =  good_sentence + " " +  work_sentence + " " + change_sentence + " " + delay_sentence + presignoff + "Stand clear of the closing doors please!"
 	return alltrains
 
 
@@ -138,16 +161,16 @@ def getBus():
 	print delay
 
 	if good:
-		good_sentence = "{}, and {}".format(", ".join(good[:-1]), good[-1])+ " busses are running fine."
+		good_sentence = oxfordComma(good) + " busses are running fine."
 
 	if detour:
-		detour_sentence = "There are detours on routes: {}, and {}".format(", ".join(detour[:-1]), detour[-1])+ "."
+		detour_sentence = "There are detours on routes: "+ oxfordComma(detour) + "."
 
 	if change:
-		change_sentence = "Be aware of service changes on {}, and {}".format(", ".join(change[:-1]), change[-1])+ " busses."
+		change_sentence = "Be aware of service changes on "+ oxfordComma(change) + " busses."
 
 	if delay:
-		delay_sentence = "Routes {}, and {}".format(", ".join(delay[:-1]), delay[-1])+ " are running with delays."
+		delay_sentence = "Routes "+ oxfordComma(delay) + " are running with delays."
 
 	allbusses =  good_sentence + " " +  detour_sentence + " " +  change_sentence + " " + delay_sentence + presignoff +"Please exit through the rear door!"
 	return allbusses
@@ -201,20 +224,20 @@ def getLIRR():
 	print work
 
 	if good:
-		good_sentence = "{}, and {}".format(", ".join(good[:-1]), good[-1])+ " trains are running fine."
+		good_sentence = oxfordComma(good)+ " trains are running fine."
 
 	if detour :
 		print detour
-		detour_sentence = "There are detours on the {}, and {}".format(", ".join(detour[:-1]), detour[-1])+ " lines."
+		detour_sentence = "There are detours on the "+ oxfordComma(detour) + " lines."
 
 	if change:
-		change_sentence = "Be aware of service changes on {}, and {}".format(", ".join(change[:-1]), change[-1])+ " trains."
+		change_sentence = "Be aware of service changes on "+oxfordComma(change)+ " trains."
 
 	if work:
-		work_sentence = "There is work planned on the {}, and {}".format(", ".join(work[:-1]), work[-1])+ " lines."
+		work_sentence = "There is work planned on the "+oxfordComma(work)+ " lines."
 
 	if delay:
-		delay_sentence = "{}, and {}".format(", ".join(delay[:-1]), delay[-1])+ " trains are running with delays."
+		delay_sentence = oxfordComma(delay)+ " trains are running with delays."
 
 
 	alltrains =  good_sentence + " " +  detour_sentence + " " +  change_sentence + " " + work_sentence + " " +delay_sentence + presignoff +" Tickets please!"
@@ -269,20 +292,20 @@ def getMNR():
 	print work
 
 	if good:
-		good_sentence = "{}, and {}".format(", ".join(good[:-1]), good[-1])+ " trains are running fine."
+		good_sentence = oxfordComma(good)+ " trains are running fine."
 
 	if detour :
 		print detour
-		detour_sentence = "There are detours on the {}, and {}".format(", ".join(detour[:-1]), detour[-1])+ " lines."
+		detour_sentence = "There are detours on the "+ oxfordComma(detour) + " lines."
 
 	if change:
-		change_sentence = "Be aware of service changes on {}, and {}".format(", ".join(change[:-1]), change[-1])+ " trains."
+		change_sentence = "Be aware of service changes on "+oxfordComma(change)+ " trains."
 
 	if work:
-		work_sentence = "There is work planned on the {}, and {}".format(", ".join(work[:-1]), work[-1])+ " lines."
+		work_sentence = "There is work planned on the "+oxfordComma(work)+ " lines."
 
 	if delay:
-		delay_sentence = "{}, and {}".format(", ".join(delay[:-1]), delay[-1])+ " trains are running with delays."
+		delay_sentence = oxfordComma(delay)+ " trains are running with delays."
 
 
 	alltrains =  good_sentence + " " +  detour_sentence + " " +  change_sentence + " " + work_sentence + " " +delay_sentence + presignoff +" Tickets please!"
@@ -337,23 +360,23 @@ def getBT():
 	print work
 
 	if good:
-		good_sentence = "The {}, and {}".format(", ".join(good[:-1]), good[-1])+ " are all running fine."
+		good_sentence = "The "+oxfordComma(good)+ " are all running fine."
 
 	if detour :
 		print detour
-		detour_sentence = "There are detours on the {}, and {}".format(", ".join(detour[:-1]), detour[-1])+ "."
+		detour_sentence = "There are detours on the "+oxfordComma(detour)+ "."
 
 	if change:
-		change_sentence = "Be aware of service changes on the {}, and {}".format(", ".join(change[:-1]), change[-1])+ "."
+		change_sentence = "Be aware of service changes on the "+oxfordComma(change)+ "."
 
 	if work:
-		work_sentence = "There is work planned on the {}, and {}".format(", ".join(work[:-1]), work[-1])+ "."
+		work_sentence = "There is work planned on the "+oxfordComma(work)+ "."
 
 	if delay:
-		delay_sentence = "The {}, and {}".format(", ".join(delay[:-1]), delay[-1])+ " are backed up."
+		delay_sentence = "The "+oxfordComma(work)+ " are backed up."
 
 
-	allroutes =  good_sentence + " " +  detour_sentence + " " +  change_sentence + " " + work_sentence + " " +delay_sentence + presignoff +" Lenses off, lights on!"
+	allroutes =  good_sentence + " " +  detour_sentence + " " +  change_sentence + " " + work_sentence + " " +delay_sentence + presignoff +" Sunglasses off, lights on!"
 	return allroutes
 
 
