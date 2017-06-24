@@ -112,7 +112,7 @@ def getSubway():
 		change_sentence = "There's a service change on the "+ oxfordComma(change)+ "."
 
 	if delay:
-		delay_sentence = "And blerg, the "+oxfordComma(delay)+ " trains are running with delays."
+		delay_sentence = "And blurgh, the "+oxfordComma(delay)+ " trains are running with delays."
 
 	alltrains =  good_sentence + " " +  work_sentence + " " + change_sentence + " " + delay_sentence + presignoff + "Stand clear of the closing doors please!"
 	return alltrains
