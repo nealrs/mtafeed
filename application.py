@@ -27,7 +27,7 @@ def getFeed(mode):
 
 
 def getDetailUrl(mode):
-	return "http://tripplanner.mta.info/mobileApps/serviceStatus/statusMessage.aspx?mode="+mode
+	return "http://tripplanner.mta.info/mobileApps/serviceStatus/serviceStatusPage.aspx?mode="+mode
 
 
 def oxfordComma(items):
