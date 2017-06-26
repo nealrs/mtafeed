@@ -404,7 +404,7 @@ def subway():
 	feed['updateDate'] = date.strftime('%Y-%m-%dT%H:%M:%S.0Z')
 	feed['mainText'] = getSubway()
 	feed['titleText'] = "NYC Subway Status "+ locale
-	feed['redirectionURL'] = getDetailUrl("subway")
+	feed['redirectionUrl'] = getDetailUrl("subway")
 	feed_json = json.dumps(feed)
 	print feed_json
 	return feed_json
@@ -419,7 +419,7 @@ def bus():
 	feed['updateDate'] = date.strftime('%Y-%m-%dT%H:%M:%S.0Z')
 	feed['mainText'] = getBus()
 	feed['titleText'] = "NYC Bus System Status "+ locale
-	feed['redirectionURL'] = getDetailUrl("bus")
+	feed['redirectionUrl'] = getDetailUrl("bus")
 	feed_json = json.dumps(feed)
 	print feed_json
 	return feed_json
@@ -434,7 +434,7 @@ def lirr():
 	feed['updateDate'] = date.strftime('%Y-%m-%dT%H:%M:%S.0Z')
 	feed['mainText'] = getLIRR()
 	feed['titleText'] = "Long Island Railroad Status "+ locale
-	feed['redirectionURL'] = getDetailUrl("LIRR")
+	feed['redirectionUrl'] = getDetailUrl("LIRR")
 	feed_json = json.dumps(feed)
 	print feed_json
 	return feed_json
@@ -449,7 +449,7 @@ def mnr():
 	feed['updateDate'] = date.strftime('%Y-%m-%dT%H:%M:%S.0Z')
 	feed['mainText'] = getMNR()
 	feed['titleText'] = "Metro North Railroad Status "+ locale
-	feed['redirectionURL'] = getDetailUrl("MetroNorth")
+	feed['redirectionUrl'] = getDetailUrl("MetroNorth")
 	feed_json = json.dumps(feed)
 	print feed_json
 	return feed_json
@@ -464,7 +464,7 @@ def bt():
 	feed['updateDate'] = date.strftime('%Y-%m-%dT%H:%M:%S.0Z')
 	feed['mainText'] = getBT()
 	feed['titleText'] = "NYC Bridge & Tunnel Status "+ locale
-	feed['redirectionURL'] = getDetailUrl("BT")
+	feed['redirectionUrl'] = getDetailUrl("BT")
 	feed_json = json.dumps(feed)
 	print feed_json
 	return feed_json
